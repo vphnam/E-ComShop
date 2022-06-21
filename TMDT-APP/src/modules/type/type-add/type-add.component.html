@@ -1,0 +1,24 @@
+<h1 mat-dialog-title class="header-text">ADD NEW TYPE</h1>
+<hr>
+<mat-dialog-content class="mat-typography">
+    <mat-grid-list cols="4" rowHeight="4:1" [formGroup]="typeAddForm">
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Type no(Auto generate)</mat-label>
+                <input matInput placeholder="Type no" formControlName="typeNo">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Type name</mat-label>
+                <input matInput [errorStateMatcher]="customErrorStateMatcher" placeholder="Type name" formControlName="typeName">
+                <mat-error *ngIf="typeAddForm.get('typeName').hasError('required')">Type name is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>   
+    </mat-grid-list>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+    <button mat-raised-button [disabled]="!typeAddForm.valid" color="primary" cdkFocusInitial (click)="saveStyle()">Save</button>
+</mat-dialog-actions>

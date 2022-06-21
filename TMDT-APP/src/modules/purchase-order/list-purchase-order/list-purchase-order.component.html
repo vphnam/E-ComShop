@@ -1,0 +1,65 @@
+<mat-table class="lessons-table mat-elevation-z8" [dataSource]="this.dataSource">
+
+    <ng-container matColumnDef="orderNo">
+        <mat-header-cell *matHeaderCellDef>Order No</mat-header-cell>
+        <mat-cell *matCellDef="let po">{{po.orderNo}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="customerName">
+        <mat-header-cell *matHeaderCellDef>Customer name</mat-header-cell>
+        <mat-cell class="description-cell"
+                  *matCellDef="let po">{{po.customerName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="employeeName">
+        <mat-header-cell *matHeaderCellDef>Employee name</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let po">{{po.employeeName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="deliveryAddress">
+        <mat-header-cell *matHeaderCellDef>Delivery address</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let po">{{po.deliveryAddress}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="orderDate">
+        <mat-header-cell *matHeaderCellDef>Order date</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let po">{{po.orderDate | date: 'medium'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="voucherNo">
+        <mat-header-cell *matHeaderCellDef>Voucher no</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let po">{{po.voucherNo}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="processStatus">
+        <mat-header-cell *matHeaderCellDef>Process status</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let po">{{po.processStatus}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="inTheProcessDay">
+        <mat-header-cell *matHeaderCellDef>In the process day</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let po">{{po.inTheProcessDay}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="sentMail">
+        <mat-header-cell *matHeaderCellDef>Sent mail?</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let po"><mat-checkbox [aria-label]="po.sentMail" [checked]="po.sentMail" disabled></mat-checkbox></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let po">{{po.status}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></mat-row>
+</mat-table>
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event"
+               aria-label="Select page">
+</mat-paginator>

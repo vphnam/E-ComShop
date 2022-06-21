@@ -1,0 +1,66 @@
+<mat-card>
+    <mat-card-content>SEARCH MENU</mat-card-content>
+        <mat-form-field appearance="standard" class="margin-r-20">
+            <mat-label>Order no</mat-label>
+            <input matInput placeholder="Order no" [(ngModel)]="this.searchForm.orderNo">
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="margin-r-20">
+            <mat-label>Customer</mat-label>
+            <input matInput placeholder="Customer" [(ngModel)]="this.searchForm.customerInfo">
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="margin-r-20">
+            <mat-label>Employee</mat-label>
+            <input matInput placeholder="Employee" [(ngModel)]="this.searchForm.employeeInfo">
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="margin-r-20">
+            <mat-label>Order date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="this.searchForm.orderDate">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="margin-r-20">
+            <mat-label>Voucher</mat-label>
+            <input matInput placeholder="Voucher" [(ngModel)]="this.searchForm.voucherNo">
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="margin-r-20">
+            <mat-label>Status</mat-label>
+            <mat-select [(ngModel)]="this.searchForm.status">
+                <mat-option value="Y">Y</mat-option>
+                <mat-option value="N">N</mat-option>
+              </mat-select>
+        </mat-form-field>
+    <div class="form-group row">
+        <div class="d-flex justify-content-end margin-top-20">
+            <button mat-raised-button color="primary" (click)="search()">Search</button>
+            <div class="margin-l-20">
+                <button mat-raised-button color="primary" (click)="refreshSearchForm()">Refresh</button>
+            </div>
+        </div>
+    </div>
+</mat-card>
+<div class="d-flex justify-content-end margin-top-20">
+    <button mat-raised-button color="primary" (click)="OpenDialog(content)">Add new purchase order</button>
+</div>
+<div class="margin-top-10">
+    <app-list-purchase-order></app-list-purchase-order>
+</div>
+
+<ng-template #content let-modal data-target="#modal">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Purchase Order</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="mb-3">
+                <app-list-purchase-order></app-list-purchase-order>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button #closeBtn  data-miss="modal" aria-label="Close" mat-raised-button color="primary"
+            (click)="modal.close()">Close</button>
+    </div>
+</ng-template>

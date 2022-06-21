@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+    <div class="d-flex align-self-center">
+        <div class="dashboard">
+            <p class="d-flex justify-content-center title">Purchase order status board</p>
+            <table class="table table-striped">
+                <tbody>
+                    <tr *ngFor="let item of this.dashBoardTable">
+                        <td>{{item.processStatusName}}</td>
+                        <td>
+                            <a (click)="OpenDialog(content, item.processStatusCode)" [routerLink]="">{{item.quantityOrder}}</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--<div class="d-flex align-self-center">
+        <div class="dashboard">
+            <p class="d-flex justify-content-center title">Purchase order status board</p>
+            <table class="table table-striped">
+                <tbody>
+                    <tr *ngFor="let item of this.dashBoardTable">
+                        <td>{{item.processStatusName}}</td>
+                        <td>
+                            <a (click)="OpenDialog(content, item.processStatusCode)" [routerLink]="">{{item.quantityOrder}}</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="d-flex align-self-center">
+        <div class="dashboard">
+            <p class="d-flex justify-content-center title">Purchase order status board</p>
+            <table class="table table-striped">
+                <tbody>
+                    <tr *ngFor="let item of this.dashBoardTable">
+                        <td>{{item.processStatusName}}</td>
+                        <td>
+                            <a (click)="OpenDialog(content, item.processStatusCode)" [routerLink]="">{{item.quantityOrder}}</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>-->
+</div>
+
+<ng-template #content let-modal data-target="#modal">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Purchase order list</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="mb-3">
+                <app-list-purchase-order [processStatusCode]="processStatusCodePassToModal"></app-list-purchase-order>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button #closeBtn type="button" data-miss="modal" aria-label="Close" class="btn btn-outline-dark"
+            (click)="modal.close()">Close</button>
+    </div>
+</ng-template>

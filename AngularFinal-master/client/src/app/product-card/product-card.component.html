@@ -1,0 +1,34 @@
+<div class="product-card">
+  <div class="product-card__image" routerLink="/product/{{ serialNo }}">
+    <img src="assets/{{image}}" alt="" />
+  </div>
+  <div class="product-card__info">
+    <header>
+      <div class="title">
+        <div class="product-name">{{ title }}</div>
+        <div class="product-color">Màu: {{ color }}</div>
+        <div class="product-short-desc">{{ shortDesc }}</div>
+        <div class="product-note" *ngIf="quantity > 0">Chỉ còn {{quantity}} sản phẩm!</div>
+        <div class="product-note" *ngIf="!(quantity > 0)">Hết hàng</div>
+      </div>
+      <div class="product-price">{{ price | currency: "VND" }}</div>
+    </header>
+  </div>
+  <div class="product-card__cta">
+    <button
+      nz-button
+      [disabled]="quantity === 0"
+      (click)="
+        onAdd({
+          serialNo: serialNo,
+          price: price,
+          image: image,
+          title: title,
+          maxQuantity: quantity
+        })
+      "
+    >
+      {{ quantity === 0 ? "Hết hàng" : "Thêm vào giỏ hàng" }}
+    </button>
+  </div>
+</div>

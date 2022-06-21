@@ -1,0 +1,38 @@
+<mat-table class="lessons-table mat-elevation-z8" [dataSource]="this.dataSource">
+
+    <ng-container matColumnDef="customerNo">
+        <mat-header-cell *matHeaderCellDef>Customer no</mat-header-cell>
+        <mat-cell *matCellDef="let cus">{{cus.customerNo}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="customerName">
+        <mat-header-cell *matHeaderCellDef>Customer name</mat-header-cell>
+        <mat-cell class="description-cell"
+                  *matCellDef="let cus">{{cus.customerName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="customerAddress">
+        <mat-header-cell *matHeaderCellDef>Customer address</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let cus">{{cus.customerAddress}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="phoneNumber">
+        <mat-header-cell *matHeaderCellDef>Phone number</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let cus">{{cus.phoneNumber}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let cus">{{cus.email}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></mat-row>
+</mat-table>
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event"
+               aria-label="Select page">
+</mat-paginator>

@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="admin">Home</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup" *ngIf="authService.currentUserRole | async">
+      <div [ngSwitch]="authService.currentUserRole | async">
+        <div *ngSwitchCase="1">
+          <div class="navbar-nav">
+            <div class="dropdown">
+              <a class="btn dropdown-toggle" [routerLink]="['purchase-order']" role="button">
+                Purchase Order
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" [routerLink]="['purchase-order/dashboard']">Dashboard</a></li>
+              </ul>
+            </div>
+            <a class="nav-link active" aria-current="page" [routerLink]="['employee']">Employee</a>
+            <a class="nav-link active" aria-current="page" [routerLink]="['customer']">Customer</a>
+            <div class="dropdown">
+              <a class="btn dropdown-toggle" href="#" role="button">
+                Product
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <div class="row">
+                  <div>
+                    <div class="expand-more">
+                      <div class="get-on-row-widthout-change-size">
+                        <a class="dropdown-item" style="display: inline-block;" [routerLink]="['size']">Size</a>
+                        <!--<div class="dropdown-content border-rounded">
+                          <a class="dropdown-item">Size</a>
+                          <a class="dropdown-item" href="#">Color</a>
+                          <a class="dropdown-item" href="#">Style</a>
+                          <a class="dropdown-item" href="#">Type</a>
+                        </div> -->
+                      </div>
+                    </div>
+                    <a class="dropdown-item" [routerLink]="['color']">Color</a>
+                    <a class="dropdown-item" [routerLink]="['style']">Style</a>
+                    <a class="dropdown-item" [routerLink]="['type']">Type</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown">
+              <a class="btn dropdown-toggle" href="#" role="button">
+                Event
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Promotion</a></li>
+                <li><a class="dropdown-item" href="#">Voucher</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="2 || 3">
+          <div class="navbar-nav">
+            <div class="dropdown">
+              <a class="btn dropdown-toggle" [routerLink]="['purchase-order']" role="button">
+                Purchase Order
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" [routerLink]="['purchase-order/dashboard']">Dashboard</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div *ngSwitchDefault="">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dropdown justify-content-end" *ngIf="authService.loggedIn | async" style="margin-right:20px;">
+    <a class="btn dropdown-toggle" role="button">
+      Setting
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+      <li ><a class="dropdown-item" (click)="logout()">Logout</a></li>
+    </ul>
+
+  </div>
+  <a class="navbar-brand" href="admin/login" *ngIf="authService.loggedOut | async">Login</a>
+</nav>

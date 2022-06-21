@@ -1,0 +1,36 @@
+<div class="profile-container">
+  <div class="form-container">
+    <h2>Profile</h2>
+    <nz-alert [nzType]="alertType" nzShowIcon [nzMessage]="alertMessage" [ngStyle]="{ marginBottom: '12px' }"
+      *ngIf="alertVisible"></nz-alert>
+      <div class="form-group">
+
+        <div class="input-container" [formGroup]="profile">
+          <label for="customerNo">Id</label>
+          <input nz-input formControlName="customerNo"/>
+          <label for="customerName">User Name</label>
+          <input nz-input formControlName="customerName" />
+          <label for="customerAddress">Customer Address</label>
+          <input nz-input formControlName="customerAddress" />
+          <label type="email" for="email">Email</label>
+          <input nz-input formControlName="email" />
+          <label for="phoneNumber">Phone number</label>
+          <input nz-input formControlName="phoneNumber" />
+          <label for="oldPassWord">Old Password</label>
+          <input nz-input type="password" formControlName="oldPassWord" />
+          <label for="passWord">Password</label>
+          <input nz-input type="password" formControlName="passWord" (keyup)="checkValidOnType()"/>
+          <label for="confirmPassWord">Confirm password</label>
+          <input nz-input type="password" formControlName="confirmPassWord" (keyup)="checkValidOnType()"/>
+          <div class="cta-container">
+            <button nz-button type="submit" [nzLoading]="loading" (click)="update()" [disabled]="!this.profile.valid">
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="sticky-right">
+  <button nz-button><a routerLink="/card">View your membership card</a></button>
+</div>

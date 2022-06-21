@@ -1,0 +1,25 @@
+<mat-form-field appearance="standard">
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Please type input" #input>
+  </mat-form-field>
+<mat-table class="lessons-table mat-elevation-z8" [dataSource]="this.dataSource">
+    <ng-container matColumnDef="colorNo">
+        <mat-header-cell *matHeaderCellDef>Color no</mat-header-cell>
+        <mat-cell *matCellDef="let color">{{color.colorNo}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="colorName">
+        <mat-header-cell *matHeaderCellDef>Color name</mat-header-cell>
+        <mat-cell class="description-cell"
+                  *matCellDef="let color">{{color.colorName}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></mat-row>
+</mat-table>
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event"
+               aria-label="Select page">
+</mat-paginator>

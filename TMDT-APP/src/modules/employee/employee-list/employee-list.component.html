@@ -1,0 +1,43 @@
+<mat-table class="lessons-table mat-elevation-z8" [dataSource]="this.dataSource">
+
+    <ng-container matColumnDef="employeeNo">
+        <mat-header-cell *matHeaderCellDef>Employee no</mat-header-cell>
+        <mat-cell *matCellDef="let emp">{{emp.employeeNo}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="employeeName">
+        <mat-header-cell *matHeaderCellDef>Employee name</mat-header-cell>
+        <mat-cell class="description-cell"
+                  *matCellDef="let emp">{{emp.employeeName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dateOfBirth">
+        <mat-header-cell *matHeaderCellDef>Date of birth</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let emp">{{emp.dateOfBirth | date: 'medium'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="phoneNumber">
+        <mat-header-cell *matHeaderCellDef>Phone number</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let emp">{{emp.phoneNumber}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let emp">{{emp.email}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let emp">{{emp.roleNoNavigation.roleName}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></mat-row>
+</mat-table>
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event"
+               aria-label="Select page">
+</mat-paginator>

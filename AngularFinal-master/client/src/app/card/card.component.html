@@ -1,0 +1,26 @@
+<div class="profile-container">
+  <div class="form-container">
+    <h2>Membership card</h2>
+    <nz-alert [nzType]="alertType" nzShowIcon [nzMessage]="alertMessage" [ngStyle]="{ marginBottom: '12px' }"
+      *ngIf="alertVisible"></nz-alert>
+      <div class="form-group">
+        <div class="input-container" *ngIf="card">
+          <label for="id">Id</label>
+          <input nz-input [(ngModel)]="cardId" disabled=""/>
+          <label for="customerName">Tên khách hàng</label>
+          <input nz-input  [(ngModel)]="customerName" disabled/>
+          <label for="Điểm thẻ">Điểm</label>
+          <input nz-input [(ngModel)]="point" disabled/>
+          <label for="Điểm thẻ">Hạng</label>
+          <input nz-input [(ngModel)]="rank" disabled/>
+        </div>
+        <div class="input-container" *ngIf="!card">
+          <p style="text-align:center;">Hiện tại bạn chưa có thẻ thành viên</p>
+          <p style="text-align:center;">Vui lòng liên hệ chăm sóc khách hàng để biết thêm chi tiết!</p>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="sticky-left">
+  <button nz-button><a routerLink="/profile">Back to profile</a></button>
+</div>

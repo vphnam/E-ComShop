@@ -1,0 +1,12 @@
+D:\Projects\TMDT\TMDT.Shared\bin\Debug\net5.0\TMDT.Shared.deps.json
+D:\Projects\TMDT\TMDT.Shared\bin\Debug\net5.0\TMDT.Shared.dll
+D:\Projects\TMDT\TMDT.Shared\bin\Debug\net5.0\ref\TMDT.Shared.dll
+D:\Projects\TMDT\TMDT.Shared\bin\Debug\net5.0\TMDT.Shared.pdb
+D:\Projects\TMDT\TMDT.Shared\obj\Debug\net5.0\TMDT.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\TMDT\TMDT.Shared\obj\Debug\net5.0\TMDT.Shared.AssemblyInfoInputs.cache
+D:\Projects\TMDT\TMDT.Shared\obj\Debug\net5.0\TMDT.Shared.AssemblyInfo.cs
+D:\Projects\TMDT\TMDT.Shared\obj\Debug\net5.0\TMDT.Shared.csproj.CoreCompileInputs.cache
+D:\Projects\TMDT\TMDT.Shared\obj\Debug\net5.0\TMDT.Shared.dll
+D:\Projects\TMDT\TMDT.Shared\obj\Debug\net5.0\ref\TMDT.Shared.dll
+D:\Projects\TMDT\TMDT.Shared\obj\Debug\net5.0\TMDT.Shared.pdb
+D:\Projects\TMDT\TMDT.Shared\obj\Debug\net5.0\TMDT.Shared.csproj.AssemblyReference.cache

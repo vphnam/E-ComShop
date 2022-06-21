@@ -1,0 +1,23 @@
+<mat-card style="height: 100%; width: 100%;">
+    <p class="header-text" style="text-align: center; font-size:50px; margin-top: 80px; margin-bottom: 40px;">LOGIN FORM</p>
+    <mat-grid-list cols="1" rowHeight="14:1" [formGroup]="loginForm">
+        <mat-grid-tile [rowspan]="1">
+            <mat-form-field appearance="standard">
+                <mat-label>Email</mat-label>
+                <input matInput [errorStateMatcher]="customErrorStateMatcher" placeholder="Please type your email" formControlName="email">
+                <mat-error *ngIf="loginForm.get('email').hasError('required')">Email is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="1">
+            <mat-form-field appearance="standard">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" [errorStateMatcher]="customErrorStateMatcher" placeholder="Please type your password" formControlName="passWord">
+                <mat-error *ngIf="loginForm.get('passWord').hasError('required')">Password is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>  
+        <mat-grid-tile [rowspan]="1">
+            <button mat-raised-button [disabled]="!loginForm.valid" color="primary" (click)="login()" cdkFocusInitial >Login</button>
+        </mat-grid-tile>  
+        
+    </mat-grid-list>
+</mat-card>

@@ -1,0 +1,17 @@
+D:\Projects\TMDT\TMDT.Application\obj\Debug\net5.0\TMDT.Application.csproj.AssemblyReference.cache
+D:\Projects\TMDT\TMDT.Application\obj\Debug\net5.0\TMDT.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\TMDT\TMDT.Application\obj\Debug\net5.0\TMDT.Application.AssemblyInfoInputs.cache
+D:\Projects\TMDT\TMDT.Application\obj\Debug\net5.0\TMDT.Application.AssemblyInfo.cs
+D:\Projects\TMDT\TMDT.Application\obj\Debug\net5.0\TMDT.Application.csproj.CoreCompileInputs.cache
+D:\Projects\TMDT\TMDT.Application\bin\Debug\net5.0\TMDT.Application.deps.json
+D:\Projects\TMDT\TMDT.Application\bin\Debug\net5.0\TMDT.Application.dll
+D:\Projects\TMDT\TMDT.Application\bin\Debug\net5.0\ref\TMDT.Application.dll
+D:\Projects\TMDT\TMDT.Application\bin\Debug\net5.0\TMDT.Application.pdb
+D:\Projects\TMDT\TMDT.Application\bin\Debug\net5.0\TMDT.Infrastructure.dll
+D:\Projects\TMDT\TMDT.Application\bin\Debug\net5.0\TMDT.Shared.dll
+D:\Projects\TMDT\TMDT.Application\bin\Debug\net5.0\TMDT.Infrastructure.pdb
+D:\Projects\TMDT\TMDT.Application\bin\Debug\net5.0\TMDT.Shared.pdb
+D:\Projects\TMDT\TMDT.Application\obj\Debug\net5.0\TMDT.Application.csproj.CopyComplete
+D:\Projects\TMDT\TMDT.Application\obj\Debug\net5.0\TMDT.Application.dll
+D:\Projects\TMDT\TMDT.Application\obj\Debug\net5.0\ref\TMDT.Application.dll
+D:\Projects\TMDT\TMDT.Application\obj\Debug\net5.0\TMDT.Application.pdb

@@ -1,0 +1,59 @@
+<mat-card>
+    <mat-card-content>SEARCH MENU</mat-card-content>
+        <mat-form-field appearance="standard" class="margin-r-50">
+            <mat-label>Employee no</mat-label>
+            <input matInput placeholder="Employee no" [(ngModel)]="this.searchForm.employeeNo">
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="margin-r-50">
+            <mat-label>Employee name</mat-label>
+            <input matInput placeholder="Employee name" [(ngModel)]="this.searchForm.employeeName">
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="margin-r-50">
+            <mat-label>Date of birth</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="this.searchForm.dateOfBirth">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="margin-r-50">
+            <mat-label>Phone number</mat-label>
+            <input matInput placeholder="Phone number" [(ngModel)]="this.searchForm.phoneNumber">
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="margin-r-50">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" [(ngModel)]="this.searchForm.email">
+        </mat-form-field>
+    <div class="form-group row">
+        <div class="d-flex justify-content-end margin-top-20">
+            <button mat-raised-button color="primary" (click)="search()">Search</button>
+            <div class="margin-l-20">
+                <button mat-raised-button color="primary" (click)="refreshSearchForm()">Refresh</button>
+            </div>
+        </div>
+    </div>
+</mat-card>
+<div class="d-flex justify-content-end margin-top-20">
+    <button mat-raised-button color="primary" (click)="openDialog()">Add new employee</button>
+</div>
+<div class="margin-top-10">
+    <app-employee-list></app-employee-list>
+</div>
+
+<ng-template #content let-modal data-target="#modal">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Employee</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="mb-3">
+                <app-employee-list></app-employee-list>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button #closeBtn  data-miss="modal" aria-label="Close" mat-raised-button color="primary"
+            (click)="modal.close()">Close</button>
+    </div>
+</ng-template>

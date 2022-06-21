@@ -1,0 +1,25 @@
+<div class="order-history-container">
+  <h2>Order History</h2>
+  {{ error }}
+  <div *ngIf="orders.length == 0">
+    Hiện bạn chưa có đơn hàng nào!
+  </div>
+  <nz-table #basicTable [nzData]="orders" *ngIf="orders.length > 0">
+    <thead>
+      <tr>
+        <th>Order No</th>
+        <th>Delivery Address</th>
+        <th>Order date</th>
+        <th>Process status</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="basicTable.data">
+      <tr *ngFor="let item of basicTable.data">
+        <td>{{ item.orderNo }}</td>
+        <td>{{ item.deliveryAddress }}</td>
+        <td>{{ item.orderDate | date: "dd/MM/YYYY"}}</td>
+        <td>{{ item.processStatus }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

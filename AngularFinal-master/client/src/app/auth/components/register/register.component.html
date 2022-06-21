@@ -1,0 +1,100 @@
+<div class="register-container">
+  <div class="form-container">
+    <h2>Đăng ký vào Nam Store</h2>
+    <nz-alert
+      *ngIf="errorMessage"
+      nzShowIcon
+      nzType="error"
+      [nzMessage]="errorMessage"
+      [ngStyle]="{ 'margin-bottom': '16px' }"
+    ></nz-alert>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="input-container">
+        <label for="fullName">Họ và tên</label>
+        <input
+          nz-input
+          type="text"
+          name="fullName"
+          [(ngModel)]="customerName"
+          placeholder="Nhập họ tên"
+        />
+      </div>
+      <div class="input-container">
+        <label for="email">Địa chỉ</label>
+        <input
+          nz-input
+          type="text"
+          name="customerAddress"
+          [(ngModel)]="customerAddress"
+          placeholder="Nhập địa chỉ"
+        />
+      </div>
+      <div class="input-container">
+        <label for="email">Nhập số điện thoại</label>
+        <input
+          nz-input
+          type="text"
+          name="phoneNumber"
+          [(ngModel)]="phoneNumber"
+          placeholder="Nhập số điện thoại"
+        />
+      </div>
+      <div class="input-container">
+        <label for="email">Email</label>
+        <input
+          nz-input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Nhập địa chỉ email"
+        />
+      </div>
+      <div class="🤪">
+        <div class="input-container">
+          <label for="password">Mật khẩu</label>
+          <input
+            nz-input
+            type="password"
+            name="passWord"
+            [(ngModel)]="passWord"
+            placeholder="Nhập mật khẩu"
+          />
+        </div>
+        <div class="input-container">
+          <label for="confirmPassword">Xác nhận mật khẩu</label>
+          <input
+            nz-input
+            type="password"
+            name="confirmPassword"
+            [(ngModel)]="confirmPassword"
+            placeholder="Nhập xác nhận mật khẩu"
+          />
+        </div>
+      </div>
+      <div class="✅">
+        <div class="checkbox-container">
+          <input nz-input type="checkbox" />
+          <span>Tôi đồng ý nhận mail thông báo của Nam Store</span>
+        </div>
+        <div class="checkbox-container">
+          <input nz-input type="checkbox" />
+          <span> Tôi đồng ý với các điều khoản và điều kiện của Nam's Store</span>
+        </div>
+      </div>
+      <div class="cta-container">
+        <!-- <input type="submit" value="Sign up" /> -->
+        <button
+          nz-button
+          type="submit"
+          [disabled]="!canSubmit()"
+          [nzLoading]="loading"
+        >
+          Đăng ký
+        </button>
+        <div>
+          <div><a routerLink="/login">Đăng nhập với tài khoản của tôi</a></div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

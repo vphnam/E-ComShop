@@ -1,0 +1,63 @@
+<h1 mat-dialog-title class="header-text">ADD NEW EMPLOYEE</h1>
+<hr>
+<mat-dialog-content class="mat-typography">
+    <mat-grid-list cols="4" rowHeight="4:1" [formGroup]="customerAddForm">
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Customer no(Auto generate)</mat-label>
+                <input matInput placeholder="Customer no" formControlName="customerNo">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Customer name</mat-label>
+                <input matInput [errorStateMatcher]="customErrorStateMatcher" placeholder="Customer name" formControlName="customerName">
+                <mat-error *ngIf="customerAddForm.get('customerName').hasError('required')">Customer name is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>   
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Customer Address</mat-label>
+                <input matInput [errorStateMatcher]="customErrorStateMatcher" placeholder="Customer address" formControlName="customerAddress">
+                <mat-error *ngIf="customerAddForm.get('customerAddress').hasError('required')">Customer address is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>  
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Phone number</mat-label>
+                <input matInput placeholder="Phone number" formControlName="phoneNumber">
+                <mat-hint>Ex: 0111111111</mat-hint>
+                <mat-error *ngIf="customerAddForm.get('phoneNumber').hasError('required')">Phone number is <strong>required</strong></mat-error>
+                <mat-error *ngIf="customerAddForm.get('phoneNumber').hasError('pattern')">Please input phone number with correct format</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" formControlName="email">
+                <mat-error *ngIf="customerAddForm.get('email').hasError('required')">Email is <strong>required</strong></mat-error>
+                <mat-error *ngIf="customerAddForm.get('email').hasError('email')">Please input email with correct format</mat-error>
+                <mat-hint>Ex: email@abc.com</mat-hint>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" formControlName="passWord">
+                <mat-error *ngIf="customerAddForm.get('passWord').hasError('required')">Password is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput placeholder="Confirm Password" formControlName="confirmPassWord">
+                <mat-error *ngIf="customerAddForm.get('confirmPassWord').hasError('required')">Confirm password is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+    <button mat-raised-button [disabled]="!customerAddForm.valid" color="primary" cdkFocusInitial (click)="saveEmployee()">Save</button>
+</mat-dialog-actions>

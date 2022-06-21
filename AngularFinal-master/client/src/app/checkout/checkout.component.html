@@ -1,0 +1,154 @@
+<div class="checkout-container">
+  <div class="progress-container">
+    <nz-progress [nzPercent]="getProgressPrecent()" [nzShowInfo]="false" [nzStrokeWidth]="3"></nz-progress>
+  </div>
+
+  <div class="sticky-left">
+    <nz-steps [nzCurrent]="currentStep" nzDirection="vertical">
+      <nz-step nzTitle="Thông tin giao hàng"></nz-step>
+      <nz-step nzTitle="Thông tin thanh toán"></nz-step>
+      <nz-step nzTitle="Tổng kết đơn hàng"></nz-step>
+    </nz-steps>
+  </div>
+  <!-- FIRST STEP -->
+  <div *ngIf="currentStep === 0">
+    <div class="billing-container">
+      <h2>Chi tiết hóa đơn</h2>
+      <form [formGroup]="billingAddressForm">
+        <div class="input-container">
+          <label for="deliveryAddress">Địa chỉ giao hàng</label>
+          <input nz-input type="text" placeholder="Delivery address" formControlName="deliveryAddress" />
+          <label for="note">Ghi chú</label>
+          <input nz-input type="textarea" placeholder="Note" formControlName="note" />
+        </div>
+      </form>
+      <button nz-button [disabled]="currentStep === 0" (click)="prevStep()">
+        Trở lại
+      </button>
+      <button nz-button (click)="submitBilling()" [disabled]="!billingAddressForm.valid">
+        Tiếp tục
+      </button>
+    </div>
+  </div>
+  <!-- SECOND STEP -->
+  <div *ngIf="currentStep === 1">
+    <div class="billing-container">
+      <div class="summary-container__items">
+        <h2>Sản phẩm trong đơn hàng</h2>
+        <div class="item-list">
+          <div class="item-container" *ngFor="let item of cartData.products">
+            <div class="item-image">
+              <img src="assets/{{image}}" alt="" />
+            </div>
+            <div class="item-title">
+              {{ item.title }}
+            </div>
+            <div class="item-total">
+              {{ item.price | currency: "VND" }} x {{ item.quantity }} =
+              {{ item.quantity * item.price | currency: "VND" }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="summary-container__order">
+        <h2>Tổng kết đơn hàng</h2>
+        <div class="details">
+          <div><span>Sản phẩm</span> {{ cartData.products.length }}</div>
+          <div>
+            <span>Tổng tiền sản phẩm</span> {{ cartData.total | currency: "VND" }}
+          </div>
+          <div *ngIf="discount">
+            <span>Giảm giá ( Áp dụng voucher giảm giá {{this.salePercent}}%, tối đa {{ voucher.maxPrice | currency: "VND" }})</span> {{ discount | currency: "VND" }}
+          </div>
+          <div *ngIf="!discount">
+            <span>Giảm giá </span> {{ 0 | currency: "VND" }}
+          </div>
+          <div *ngIf="total">
+            <span>Tổng hóa đơn</span> {{ total | currency: "VND" }}
+          </div>
+          <div *ngIf="!total">
+            <span>Tổng hóa đơn</span> {{ cartData.total | currency: "VND" }}
+          </div>
+        </div>
+        <form [formGroup]="paymentForm">
+          <div class="details">
+            <label for="voucherNo" style="margin-right: 240px;">Voucher</label>
+            <div style="display: inline-block;">
+              <input type="text" placeholder="Please type voucher no"
+                formControlName="voucherNo"/>
+              <button nz-button style="margin-left: 10px;" (click)="applyVoucher(cartData.total)">Apply</button>
+            </div>
+          </div>
+          <div style="margin-top: 20px;">
+            <h2>Vui lòng chọn phương thức thanh toán</h2>
+            <div class="payment-method">
+              <div class="payment-card">
+                <input style="margin-left: 10px" type="radio" value="cash" (change)="changePayment()" formControlName="selectedPaymentMethod" />
+                <p style="margin-right: 250px;">Thanh toán bằng tiền mặt</p>
+                <img style="max-height: 30px; max-width:30px;margin-right: 0px;" src="/assets/cash.jpg">
+              </div>
+              <div class="payment-card">
+                <input style="margin-left: 10px;" type="radio" value="momo" (change)="changePayment()" formControlName="selectedPaymentMethod" />
+                <p style="margin-right: 170px;">Thanh toán thông qua ví điện tử Momo</p>
+                <img style="max-height: 30px; max-width:30px;" src="/assets/momo.jpg">
+              </div>
+              <div class="payment-card">
+                <input style="margin-left: 10px;" type="radio" value="nganluong" (change)="changePayment()" formControlName="selectedPaymentMethod" />
+                <p style="margin-right: 70px;">Thanh toán thông qua ví điện tử Ngân lượng</p>
+                <img style="height: 30px; width:100px;" src="/assets/nganluong.jpg">
+              </div>
+              <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            </div>
+          </div>
+        </form>
+        <br />
+        <button nz-button (click)="prevStep()">
+          Trở lại
+        </button>
+        <button nz-button [disabled]="!paymentForm.valid" (click)="submitPayment(this.cartData.products)">
+          Tiếp tục
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- LAST STEP - THANK YOU -->
+  <div *ngIf="currentStep === 2">
+    <div class="confirmation-container">
+      <header>
+        <div class="title">
+          <h1>Cảm ơn!</h1>
+          <p>Vui lòng kiểm tra email để xem thông tin đơn hàng</p>
+        </div>
+        <div class="order-id">
+          Mã đơn hàng: <span>{{ orderId }}</span>
+        </div>
+        <div class="order-id">
+          Người nhận: <span>{{ customerName}}</span>
+        </div>
+        <div class="order-id">
+          Địa chỉ giao hàng: <span>{{ deliveryAddress}}</span>
+        </div>
+      </header>
+      <button nz-button class="cta-button" routerLink="/">
+        Tiếp tục mua sắm
+      </button>
+      <div class="products-container">
+        <h2>Chi tiết đơn hàng</h2>
+        <div class="products-container__list">
+          <div class="list-item" *ngFor="let item of products">
+            <div class="item-image">
+              <img [src]="item.image" alt="" />
+            </div>
+            <div class="item-title">
+              {{ item.title }}
+            </div>
+            <div class="item-total">
+              {{ item.price | currency: "VND" }} x {{ item.quantity }} =
+              {{ item.quantity * item.price | currency: "VND" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
