@@ -83,7 +83,7 @@ namespace TMDT.Controllers
                         {
                             new Claim(ClaimTypes.NameIdentifier, cusDto.CustomerNo.ToString()),
                             new Claim(ClaimTypes.Name, cusDto.CustomerName),
-                            new Claim(ClaimTypes.Role, cusDto.MembershipCardNavigation.RankNoNavigation.RankName)
+                            new Claim(ClaimTypes.Role, (cusDto.MembershipCardNavigation != null) ? cusDto.MembershipCardNavigation.RankNoNavigation.RankName : "")
                         };
 
                         var token = new JwtSecurityToken(_config["Jwt:Issuer"], _config["Jwt:Audience"], claims, expires: DateTime.Now.AddMinutes(5), signingCredentials: crendentials);
@@ -96,8 +96,11 @@ namespace TMDT.Controllers
                         model.CustomerAddress = cusDto.CustomerAddress;
                         model.Email = cusDto.Email;
                         model.PhoneNumber = cusDto.PhoneNumber;
-                        model.RoleId = cusDto.MembershipCardNavigation.RankNo.ToString();
-                        model.RoleName = cusDto.MembershipCardNavigation.RankNoNavigation.RankName;
+                        if(cusDto.MembershipCardNavigation != null)
+                        {
+                            model.RoleId = cusDto.MembershipCardNavigation.RankNo.ToString();
+                            model.RoleName = cusDto.MembershipCardNavigation.RankNoNavigation.RankName;
+                        }
                         model.Token = tokenString;
 
                         return new ResultViewModel<object>(ViewModels.Base.StatusCode.OK, "Login successfully", model);

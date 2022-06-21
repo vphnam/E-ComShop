@@ -4,6 +4,7 @@ import { AuthGuard } from 'src/helpers/AuthGuard';
 import { ColorSearchComponent } from 'src/modules/color/color-search/color-search.component';
 import { CustomerSearchComponent } from 'src/modules/customer/customer-search/customer-search.component';
 import { EmployeeSearchComponent } from 'src/modules/employee/employee-search/employee-search.component';
+import { ProductSearchComponent } from 'src/modules/product/product-search/product-search.component';
 import { DashboardComponent } from 'src/modules/purchase-order/dashboard/dashboard.component';
 import { PurchaseOrderSearchComponent } from 'src/modules/purchase-order/purchase-order-search/purchase-order-search.component';
 import { SizeSearchComponent } from 'src/modules/size/size-search/size-search.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path:'customer',
         component:CustomerSearchComponent, canActivate: [AuthGuard]
+      },
+      {
+        path:'product',
+        component:ProductSearchComponent, canActivate: [AuthGuard]
       },
       {
         path:'size',

@@ -30,6 +30,12 @@ namespace TMDT
                 {
                     options.WithOrigins(Configuration["SAPHost:url"]).AllowAnyHeader().AllowAnyMethod();
                 });
+                builder.AddPolicy("LocalClient", options =>
+                {
+                    options.WithOrigins(Configuration["SAPHost:url2"]).AllowAnyHeader().AllowAnyMethod();
+                });
+
+
             });
 
             services.AddAutoMapper(typeof(MapperProfile).Assembly);
@@ -71,6 +77,7 @@ namespace TMDT
             app.UseEndpoints(endpoints =>
             {
                 app.UseCors("LocalDevCors");
+                app.UseCors("LocalClient");
                 //app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
                 endpoints.MapControllers(); 
             });

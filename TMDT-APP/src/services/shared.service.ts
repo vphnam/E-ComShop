@@ -52,6 +52,17 @@ export class SharedService {
         typeNo: new FormControl({ value: "", disabled: true }),
         typeName: new FormControl(null, [Validators.required]),
     });
+    productAddForm = new FormGroup({
+        productNo: new FormControl({ value: "", disabled: true }),
+        productName: new FormControl(null, [Validators.required]),
+        typeNo: new FormControl(null, [Validators.required]),
+        styleNo: new FormControl(null, [Validators.required]),
+        price: new FormControl(null, [Validators.required]),
+        productDescription: new FormControl(null, [Validators.required]),
+    });
+    public getProductAddForm(){
+        return this.productAddForm;
+    }
     public getEmployeeAddForm() {
         return this.employeeAddForm;
     }
@@ -76,6 +87,7 @@ export class SharedService {
         "/admin/purchase-order/dashboard",
         "/admin/employee",
         "/admin/customer",
+        "/admin/product",
         "/admin/size",
         "/admin/color",
         "/admin/style",

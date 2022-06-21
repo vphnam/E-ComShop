@@ -83,6 +83,11 @@ namespace TMDT.Application.Services
                     cusDto = _mapper.Map<CustomerDto>(customer);
                     cusDto.MembershipCardNavigation = _mapper.Map<MembershipCardDto>(cardEnt);
                 }
+                else
+                {
+                    cusDto = _mapper.Map<CustomerDto>(customer);
+                    cusDto.MembershipCardNavigation = null;
+                }
                 return cusDto;
             }
             else

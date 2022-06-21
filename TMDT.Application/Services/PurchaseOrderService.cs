@@ -23,9 +23,10 @@ namespace TMDT.Application.Services
         private readonly IVoucherRepository _vcRepo;
         private readonly IMembershipCardRepository _memCardRepo;
         private readonly PurchaseOrderManager _poManager;
+        private readonly ISerialProductRepository _seRepo;
         public PurchaseOrderService(IPurchaseOrderRepository poRepo, IPurchaseOrderLineRepository polRepo, IFeedbackRepository fbRepo,
             ICustomerRepository cusRepo, IEmployeeRepository empRepo, PurchaseOrderManager poManager,
-            IMembershipCardRepository memCardRepo, IVoucherRepository vcRepo, IMapper mapper):base(mapper)
+            IMembershipCardRepository memCardRepo, IVoucherRepository vcRepo, ISerialProductRepository seRepo, IMapper mapper):base(mapper)
         {
             _poRepo = poRepo;
             _polRepo = polRepo;
@@ -35,6 +36,7 @@ namespace TMDT.Application.Services
             _poManager = poManager;
             _vcRepo = vcRepo;
             _memCardRepo = memCardRepo;
+            _seRepo = seRepo;
         }
 
         public async Task<List<PurchaseOrderDto>> GetAllPurchaseOrderAsync()
@@ -64,6 +66,13 @@ namespace TMDT.Application.Services
                     item.OrderNo = po.OrderNo;
                     total += ((double)item.BuyPrice * item.QuantityOrdered);
                     await _polRepo.InsertNewAsync(_mapper.Map<PurchaseOrderLine>(item));
+
+                    var se = await _seRepo.GetRecordByNoAsync(item.SerialNo);
+                    if (se != null)
+                    {
+                        se.Quantity = se.Quantity - item.QuantityOrdered;
+                        await _seRepo.UpdateAsync(se);
+                    } 
                 }
                 var card = await _memCardRepo.GetCardByCustomerNo(entityDto.CustomerNo);
                 if (card != null)
@@ -81,8 +90,8 @@ namespace TMDT.Application.Services
                         card.RankNo = 5;
                     else
                         card.RankNo = 6;
+                    await _memCardRepo.UpdateAsync(card);
                 }
-                await _memCardRepo.UpdateAsync(card);
             }
             return po;
         }

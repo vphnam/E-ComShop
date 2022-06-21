@@ -30,7 +30,7 @@ import { SizeModule } from 'src/modules/size/size.module';
 import { ColorModule } from 'src/modules/color/color.module';
 import { StyleModule } from 'src/modules/style/style.module';
 import { TypeModule } from 'src/modules/type/type.module';
-
+import { ProductModule } from 'src/modules/product/product.module';
 
 @NgModule({
   declarations: [
@@ -54,6 +54,7 @@ import { TypeModule } from 'src/modules/type/type.module';
     ColorModule,
     StyleModule,
     TypeModule,
+    ProductModule,
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,

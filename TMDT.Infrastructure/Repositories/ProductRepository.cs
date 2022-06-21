@@ -20,7 +20,7 @@ namespace TMDT.Infrastructure.Repositories
 
         public async Task<List<Product>> CheckExistNameAsync(string productNo, string productName)
         {
-            return await _dbContext.Products.Where(n => n.ProductName == productName && n.ProductNo != productNo).ToListAsync();
+            return await _dbContext.Products.Where(n => n.ProductName == productName && n.ProductNo != productNo).AsNoTracking().ToListAsync();
         }
     }
 }

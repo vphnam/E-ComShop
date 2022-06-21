@@ -1,0 +1,45 @@
+<mat-form-field appearance="standard">
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Please type input" #input>
+  </mat-form-field>
+<mat-table class="lessons-table mat-elevation-z8" [dataSource]="this.dataSource">
+    <ng-container matColumnDef="productNo">
+        <mat-header-cell *matHeaderCellDef>Product no</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{product.productNo}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="productName">
+        <mat-header-cell *matHeaderCellDef>Product name</mat-header-cell>
+        <mat-cell class="description-cell"
+                  *matCellDef="let product">{{product.productName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+        <mat-cell class="description-cell"
+                  *matCellDef="let product">{{product.typeNoNavigation.typeName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="style">
+        <mat-header-cell *matHeaderCellDef>Style</mat-header-cell>
+        <mat-cell class="description-cell"
+                  *matCellDef="let product">{{product.styleNoNavigation.styleName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef>Unit price</mat-header-cell>
+        <mat-cell class="description-cell"
+                  *matCellDef="let product">{{product.price}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="productDescription">
+        <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+        <mat-cell class="description-cell"
+                  *matCellDef="let product">{{product.productDescription}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></mat-row>
+</mat-table>
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event"
+               aria-label="Select page">
+</mat-paginator>

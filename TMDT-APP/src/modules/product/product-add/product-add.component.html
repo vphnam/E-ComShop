@@ -1,0 +1,60 @@
+<h1 mat-dialog-title class="header-text">ADD NEW PRODUCT</h1>
+<hr>
+<mat-dialog-content class="mat-typography">
+    <mat-grid-list cols="4" rowHeight="4:1" [formGroup]="productAddForm">
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Product no(Auto generate)</mat-label>
+                <input matInput placeholder="Product no" formControlName="productNo">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Product name</mat-label>
+                <input matInput [errorStateMatcher]="customErrorStateMatcher" placeholder="Product name" formControlName="productName">
+                <mat-error *ngIf="productAddForm.get('productName').hasError('required')">Product name is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>  
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="typeNo">
+                    <mat-option *ngFor="let type of this.typeList" [value]="type.typeNo">
+                      {{type.typeName}}
+                    </mat-option>
+                  </mat-select>
+                <mat-error *ngIf="productAddForm.get('typeNo').hasError('required')">Type name is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>  
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Style</mat-label>
+                <mat-select formControlName="styleNo">
+                    <mat-option *ngFor="let style of this.styleList" [value]="style.styleNo">
+                      {{style.styleName}}
+                    </mat-option>
+                  </mat-select>
+                <mat-error *ngIf="productAddForm.get('styleNo').hasError('required')">Style is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Price</mat-label>
+                <input type="number" matInput [errorStateMatcher]="customErrorStateMatcher" placeholder="Price" formControlName="price">
+                <mat-error *ngIf="productAddForm.get('price').hasError('required')">Price is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>  
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Description</mat-label>
+                <textarea  matInput style="width: 500px;max-height: 300px" [errorStateMatcher]="customErrorStateMatcher" placeholder="Product description" formControlName="productDescription"></textarea>
+                <mat-error *ngIf="productAddForm.get('productDescription').hasError('required')">Product description is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>  
+    </mat-grid-list>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+    <button mat-raised-button [disabled]="!productAddForm.valid" color="primary" cdkFocusInitial (click)="saveSize()">Save</button>
+</mat-dialog-actions>
