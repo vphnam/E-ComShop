@@ -60,6 +60,27 @@ export class SharedService {
         price: new FormControl(null, [Validators.required]),
         productDescription: new FormControl(null, [Validators.required]),
     });
+    serialProductUpdateForm = new FormGroup({
+        serialNo: new FormControl({ value: "", disabled: true }),
+        quantity: new FormControl(null, [Validators.required]),
+        productDetailImage: new FormControl(""),
+    });
+    serialProductAddForm = new FormGroup({
+        serialNo: new FormControl({ value: "", disabled: true }),
+        productNo: new FormControl(null, [Validators.required]),
+        sizeNo: new FormControl(null, [Validators.required]),
+        colorNo: new FormControl(null, [Validators.required]),
+        promotionNo: new FormControl(null),
+        productDetailImage: new FormControl(null, [Validators.required]),
+        productDetailDescription: new FormControl(null, [Validators.required]),
+        quantity: new FormControl(null, [Validators.required]),
+    });
+    public getSerialProductAddForm(){
+        return this.serialProductAddForm;
+    }
+    public getSerialProductUpdateForm(){
+        return this.serialProductUpdateForm;
+    }
     public getProductAddForm(){
         return this.productAddForm;
     }
@@ -88,6 +109,7 @@ export class SharedService {
         "/admin/employee",
         "/admin/customer",
         "/admin/product",
+        "/admin/serial-product",
         "/admin/size",
         "/admin/color",
         "/admin/style",

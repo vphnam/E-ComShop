@@ -1,0 +1,39 @@
+<h1 mat-dialog-title class="header-text">UPDATE PRODUCT</h1>
+<hr>
+<mat-dialog-content class="mat-typography" *ngIf="this.id">
+    <mat-grid-list cols="4" rowHeight="4:1" [formGroup]="serialProductUpdateForm">
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Serial no(Auto generate)</mat-label>
+                <input matInput placeholder="Serial no" formControlName="serialNo">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Quantity</mat-label>
+                <input matInput placeholder="Quantity" formControlName="quantity">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+                <img style="width:200px;height:400px;" src="assets/images/{{productDetailImage}}">
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+            <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+            <div class="file-upload">
+
+                {{fileName || "No file uploaded yet."}}
+    
+                <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+                    <mat-icon>attach_file</mat-icon>
+                </button>
+            </div>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+    <button mat-raised-button [disabled]="!serialProductUpdateForm.valid" color="primary" cdkFocusInitial
+        (click)="saveSize()">Save</button>
+</mat-dialog-actions>

@@ -1,0 +1,78 @@
+<h1 mat-dialog-title class="header-text">ADD NEW PRODUCT</h1>
+<hr>
+<mat-dialog-content class="mat-typography">
+    <mat-grid-list cols="4" rowHeight="4:1" [formGroup]="serialProductAddForm">
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Serial no(Auto generate)</mat-label>
+                <input matInput placeholder="Serial no" formControlName="serialNo">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Product</mat-label>
+                <mat-select [errorStateMatcher]="customErrorStateMatcher" formControlName="productNo">
+                    <mat-option *ngFor="let product of this.productList" [value]="product.productNo">
+                      {{product.productName}}
+                    </mat-option>
+                  </mat-select>
+                <mat-error *ngIf="serialProductAddForm.get('productNo').hasError('required')">Product is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>  
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Size</mat-label>
+                <mat-select [errorStateMatcher]="customErrorStateMatcher" formControlName="sizeNo">
+                    <mat-option *ngFor="let size of this.sizeList" [value]="size.sizeNo">
+                      {{size.sizeName}}
+                    </mat-option>
+                  </mat-select>
+                <mat-error *ngIf="serialProductAddForm.get('sizeNo').hasError('required')">Size name is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>  
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Color</mat-label>
+                <mat-select [errorStateMatcher]="customErrorStateMatcher" formControlName="colorNo">
+                    <mat-option *ngFor="let color of this.colorList" [value]="color.colorNo">
+                      {{color.colorName}}
+                    </mat-option>
+                  </mat-select>
+                <mat-error *ngIf="serialProductAddForm.get('colorNo').hasError('required')">Color is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Description</mat-label>
+                <textarea matInput [errorStateMatcher]="customErrorStateMatcher" placeholder="Description" formControlName="productDetailDescription"></textarea>
+                <mat-error *ngIf="serialProductAddForm.get('productDetailDescription').hasError('required')">Description is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>  
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field appearance="standard" class="margin-r-50">
+                <mat-label>Quantity</mat-label>
+                <input type="number" [errorStateMatcher]="customErrorStateMatcher" matInput placeholder="Quantity" formControlName="quantity">
+                <mat-error *ngIf="serialProductAddForm.get('quantity').hasError('required')">Quantity is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </mat-grid-tile> 
+        <mat-grid-tile [rowspan]="2">
+            <img style="width:200px;height:400px;" src="assets/images/{{this.serialProductAddForm.get('productDetailImage').value}}">
+    </mat-grid-tile>
+    <mat-grid-tile [rowspan]="2">
+        <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+        <div class="file-upload">
+
+            {{fileName || "No file uploaded yet."}}
+
+            <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+        </div>
+    </mat-grid-tile> 
+    </mat-grid-list>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+    <button mat-raised-button [disabled]="!serialProductAddForm.valid" color="primary" cdkFocusInitial (click)="saveSize()">Save</button>
+</mat-dialog-actions>

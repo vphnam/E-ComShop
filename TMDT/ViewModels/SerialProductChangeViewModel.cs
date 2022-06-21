@@ -14,5 +14,6 @@ namespace TMDT.ViewModels
         public string PromotionNo { get; set; }
         public string ProductDetailImage { get; set; }
         public string ProductDetailDescription { get; set; }
+        public int Quantity { get; set; }
     }
 }

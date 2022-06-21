@@ -31,7 +31,7 @@ import { ColorModule } from 'src/modules/color/color.module';
 import { StyleModule } from 'src/modules/style/style.module';
 import { TypeModule } from 'src/modules/type/type.module';
 import { ProductModule } from 'src/modules/product/product.module';
-
+import { SerialProductModule } from 'src/modules/serial-product/serial-product.module';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -55,6 +55,9 @@ import { ProductModule } from 'src/modules/product/product.module';
     StyleModule,
     TypeModule,
     ProductModule,
+    SerialProductModule,
+
+    
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,

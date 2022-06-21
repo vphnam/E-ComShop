@@ -205,3 +205,6 @@
 .table thead td {
     border: 0.01em solid;
 }
+.file-input {
+    display: none;
+  }

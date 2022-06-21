@@ -7,6 +7,7 @@ import { EmployeeSearchComponent } from 'src/modules/employee/employee-search/em
 import { ProductSearchComponent } from 'src/modules/product/product-search/product-search.component';
 import { DashboardComponent } from 'src/modules/purchase-order/dashboard/dashboard.component';
 import { PurchaseOrderSearchComponent } from 'src/modules/purchase-order/purchase-order-search/purchase-order-search.component';
+import { SerialProductSearchComponent } from 'src/modules/serial-product/serial-product-search/serial-product-search.component';
 import { SizeSearchComponent } from 'src/modules/size/size-search/size-search.component';
 import { StyleSearchComponent } from 'src/modules/style/style-search/style-search.component';
 import { TypeSearchComponent } from 'src/modules/type/type-search/type-search.component';
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path:'product',
         component:ProductSearchComponent, canActivate: [AuthGuard]
+      },
+      {
+        path:'serial-product',
+        component:SerialProductSearchComponent, canActivate: [AuthGuard]
       },
       {
         path:'size',

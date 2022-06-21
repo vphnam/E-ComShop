@@ -35,7 +35,7 @@ namespace TMDT.Application.Services
 
         public async Task<List<DisplayProductDto>> GetAllSerialProductAsync()
         {
-            var list = await _serialProRepo.GetAllAsync();
+            evar list = await _serialProRepo.GetAllAsync();
             var disList = new List<DisplayProductDto>();
 
             foreach(var item in list)
@@ -88,7 +88,13 @@ namespace TMDT.Application.Services
         public async Task<SerialProductDto> UpdateSerialProductAsync(SerialProductDto entityDto)
         {
             var serialProduct = await _serialProManager.UpdateSerialProductAsync(entityDto);
-            var returnSerialProduct = await _serialProRepo.UpdateAsync(serialProduct);
+            var model = await _serialProRepo.GetRecordByNoAsync(entityDto.SerialNo);
+            if(model != null)
+            {
+                model.ProductDetailImage = entityDto.ProductDetailImage;
+                model.Quantity = entityDto.Quantity;
+            }
+            var returnSerialProduct = await _serialProRepo.UpdateAsync(model);
             return _mapper.Map<SerialProductDto>(returnSerialProduct);
         }
         public  async Task<SerialProductDto> DeleteSerialProductAsync(SerialProductDto entityDto)

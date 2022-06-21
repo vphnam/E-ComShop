@@ -8,12 +8,12 @@ import { map, Observable, tap } from 'rxjs';
 import { HttprequestService } from 'src/services/http-request.service';
 import { ISize } from 'src/services/interface.service';
 import { SharedService } from 'src/services/shared.service';
-import { ProductUpdateComponent } from '../product-update/product-update.component';
+import { SerialProductUpdateComponent } from '../serial-product-update/serial-product-update.component';
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html'
+  selector: 'app-serial-product-list',
+  templateUrl: './serial-product-list.component.html'
 })
-export class ProductListComponent implements OnInit, OnDestroy, AfterViewInit {
+export class SerialProductListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private http: HttprequestService, private httpClient: HttpClient, private shared: SharedService, public dialog: MatDialog) {
     
@@ -28,31 +28,33 @@ export class ProductListComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns = ["productNo",
-    "productName",
-    "type",
-    "style",
+  displayedColumns = ["serialNo",
+    "productNo",
+    "title",
+    "image",
     "price",
-    "productDescription"];
+    "color",
+    "quantity",
+    "shortDesc"];
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
     this.shared.getData().subscribe(data=>{
       if(data != null)
       {
-        this.refreshProductListBySearchForm();
+        this.refreshSerialProductListBySearchForm();
       }
       else
       {
-        this.refreshProductListBySearchForm();
+        this.refreshSerialProductListBySearchForm();
       }
     });
     
   }
   ngOnDestroy(): void {
   }
-  refreshProductListBySearchForm() {
-    this.http.get("/Product").subscribe(data => {
+  refreshSerialProductListBySearchForm() {
+    this.http.get("/SerialProduct").subscribe(data => {
       console.warn(data);
       this.dataSource = new MatTableDataSource<any>(data.data);
       this.dataSource.paginator = this.paginator;
@@ -68,7 +70,7 @@ export class ProductListComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
   onRowClicked(row: any) {
-    const dialogRef = this.dialog.open(ProductUpdateComponent, {width:'1000px',height:'500px'});
-    dialogRef.componentInstance.id = row.productNo;
+    const dialogRef = this.dialog.open(SerialProductUpdateComponent, {width:'1000px',height:'500px'});
+    dialogRef.componentInstance.id = row.serialNo;
   }
 }
